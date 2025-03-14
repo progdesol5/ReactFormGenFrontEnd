@@ -1,0 +1,101 @@
+export interface TableField {
+  ID: number;
+  FORMTEMPLATE: number;
+  TABLESCHEMA: string | null;
+  APINAME: string | null;
+  FORMTITLE: string;
+  TABLENAME: string;
+  FIELDNAME: string;
+  PRIMARYKEY: string;
+  FIELDTYPE: string;
+  MAXFIELDTYPE: string | null;
+  FIELDTEMPLATE: string;
+  DATATYPE: string;
+  PRIMARY: string;
+  ALLOWNULL: string;
+  LABELNAME1: string;
+  LABELNAME2: string;
+  LABELNAME3: string;
+  CONTROLTYPE: string;
+  SHOWINLIST: string;
+  MENDATORY: string;
+  SEARCHALLOW: string;
+  SORTNUMBER: string;
+  VALIDATION: string;
+  SWITCH1: string;
+  SWITCH2: string;
+  SWITCH3: string;
+  SWITCH4: string | null;
+  SWITCH5: number;
+  SWITCH6: number;
+}
+
+export type CreateFieldModalProps = {
+  isOpen: boolean;
+  closeModal: () => void;
+  onSubmit: (formData: Record<string, string | null>) => void;
+  tables: string[] | null;
+};
+
+export interface RefTableItemType {
+  MYREFID: number;
+  TENANTID: number;
+  REFID: number;
+  MODULE: string;
+  REFTYPE: string;
+  REFSUBTYPE: string;
+  MYEXT: number;
+  SHORTNAME: string;
+  REFNAME1: string;
+  REFNAME2: string;
+  REFNAME3: string;
+  SWITCH1: string;
+  SWITCH2: string;
+  SWITCH3: string;
+  SWITCH4: number | null;
+  SORTBY: number | null;
+  MEVISIBLE: number;
+  REMARKS: string;
+  ACTIVE: string;
+  INFRASTRUCTURE: string;
+  REF_IMAGE: string | null;
+  UPLOADDATE: string | null;
+  UPLOADBY: string | null;
+  SYNCDATE: string | null;
+  SYNCBY: string | null;
+  SYNID: number;
+  CRUPID: number | null;
+}
+export interface FieldTemplateType {
+  MYREFID: number;
+  TENANTID: number;
+  REFID: number;
+  MODULE: string;
+  REFTYPE: string;
+  REFSUBTYPE: string;
+  MYEXT: number;
+  SHORTNAME: string;
+  REFNAME1: string;
+  REFNAME2: string;
+  REFNAME3: string;
+  SWITCH1: string;
+  SWITCH2: string;
+  SWITCH3: string;
+  SWITCH4: number;
+  SORTBY: number;
+  MEVISIBLE: number;
+  REMARKS: string;
+  ACTIVE: string;
+  INFRASTRUCTURE: string;
+  REFIMAGE: string | null;
+  UPLOADDATE: string | null;
+  UPLOADBY: string | null;
+  SYNCDATE: string | null;
+  SYNCBY: string | null;
+  SYNID: number;
+  CRUPID: string | null;
+  LANG1: string;
+  LANG2: string;
+  LANG3: string;
+}
+export type TableFieldsArray = TableField[];

@@ -1,0 +1,36 @@
+:root {
+  --gjs-primary-color: #1b122b;
+  --gjs-secondary-color: #94a3b8;
+  --gjs-tertiary-color: #8b5cf6;
+  --gjs-quaternary-color: #6d28d9;
+}
+
+#gjs {
+  border: 3px solid #181717;
+}
+
+.gjs-frame {
+  margin-top: 1rem;
+}
+
+.gjs-pn-commands {
+  height: 9%;
+}
+
+.gjs-pn-views {
+  height: 9%;
+}
+
+.gjs-layer-item {
+  margin-top: 10px;
+}
+
+.custom-gjs-pn-btn {
+  padding-top: 9px;
+}
+
+/* Reset some default styling */
+.editor-container {
+  width: 100%;
+  height: 100vh;
+}
