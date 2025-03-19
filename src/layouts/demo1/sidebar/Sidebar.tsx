@@ -63,12 +63,14 @@ export const Sidebar = () => {
           themeClass
         )}
       >
-        {desktopMode && <SidebarHeader ref={headerRef} />}
-        <SidebarContent {...(desktopMode && { height: scrollableHeight })} />
+       
+        <SidebarContent />
       </div>
     );
   };
 
+  // {desktopMode && <SidebarHeader ref={headerRef} />}
+  //<SidebarContent {...(desktopMode && { height: scrollableHeight })} />
   useEffect(() => {
     // Hide drawer on route chnage after menu link click
     if (!desktopMode && prevPathname !== pathname) {
@@ -76,24 +78,26 @@ export const Sidebar = () => {
     }
   }, [desktopMode, pathname, prevPathname]);
 
-  if (desktopMode) {
+  return (
+    <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
+      <SheetContent
+        className="border-0 p-0 w-[--tw-sidebar-width] scrollable-y-auto"
+        forceMount={true}
+        side="left"
+        close={false}
+      >
+        <SheetHeader className="sr-only">
+          <SheetTitle>Mobile Menu</SheetTitle>
+          <SheetDescription></SheetDescription>
+        </SheetHeader>
+        {renderContent()}
+      </SheetContent>
+    </Sheet>
+  );
+
+  /*if (desktopMode) {
     return renderContent();
   } else {
-    return (
-      <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
-        <SheetContent
-          className="border-0 p-0 w-[--tw-sidebar-width] scrollable-y-auto"
-          forceMount={true}
-          side="left"
-          close={false}
-        >
-          <SheetHeader className="sr-only">
-            <SheetTitle>Mobile Menu</SheetTitle>
-            <SheetDescription></SheetDescription>
-          </SheetHeader>
-          {renderContent()}
-        </SheetContent>
-      </Sheet>
-    );
-  }
+   
+  }*/
 };
