@@ -38,7 +38,7 @@ const Error500Page = () => {
         &nbsp; for assistance.
       </div>
 
-      <Link to="/" className="btn btn-primary flex justify-center">
+      <Link to="/dashboard" className="btn btn-primary flex justify-center">
         Back to Home
       </Link>
     </Fragment>

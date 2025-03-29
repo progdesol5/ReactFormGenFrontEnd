@@ -195,6 +195,7 @@ export const MENU_SIDEBAR: TMenuConfig = [
         ]
       },
       {
+
         title: 'Security',
         children: [
           {

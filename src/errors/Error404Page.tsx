@@ -29,7 +29,7 @@ const Error404Page = () => {
 
       <div className="text-md text-center text-gray-700 mb-10">
         The requested page is missing. Check the URL or&nbsp;
-        <Link to="/" className="text-primary font-medium hover:text-primary-active">
+        <Link to="/dashboard" className="text-primary font-medium hover:text-primary-active">
           Return Home
         </Link>
         .

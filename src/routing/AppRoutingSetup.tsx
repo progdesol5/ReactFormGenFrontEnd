@@ -183,7 +183,9 @@ const AppRoutingSetup = (): ReactElement => {
           <Route path="generated-table" element={<GenerateForm />} />
         </Route> */}
         <Route element={getDemoLayout()}>
-          <Route path="" element={<DefaultPage />} />
+          <Route path="" element={<Navigate to="/auth/classic/login" />} />
+
+          <Route path="/dashboard" element={<DefaultPage />} />
           <Route path="dark-sidebar" element={<Demo1DarkSidebarPage />} />
           <Route path="/tables" element={<Tables />} />
           <Route path="/table" element={<TablePage />} />
