@@ -55,7 +55,7 @@ const MegaMenuInner = () => {
     return (
       <Fragment>
         <MenuItem key="home">
-          <MenuLink path={homeItem.path} className={linkClass}>
+          <MenuLink path="/dashboard" className={linkClass}>
             <MenuTitle className={titleClass}>{homeItem.title}</MenuTitle>
           </MenuLink>
         </MenuItem>

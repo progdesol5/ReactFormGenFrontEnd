@@ -285,8 +285,8 @@ const SidebarMenu = () => {
 
   const { getMenuConfig } = useMenus();
   const menuConfig = getMenuConfig('primary');
-
   return (
+   
     <Menu highlight={true} multipleExpand={false} className={clsx('flex flex-col grow', itemsGap)}>
       {menuConfig && buildMenu(menuConfig)}
     </Menu>

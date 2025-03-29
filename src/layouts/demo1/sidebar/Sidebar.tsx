@@ -63,14 +63,13 @@ export const Sidebar = () => {
           themeClass
         )}
       >
-       
-        <SidebarContent />
+        {desktopMode && <SidebarHeader ref={headerRef} />}
+        <SidebarContent {...(desktopMode && { height: scrollableHeight })} />
       </div>
     );
   };
 
-  // {desktopMode && <SidebarHeader ref={headerRef} />}
-  //<SidebarContent {...(desktopMode && { height: scrollableHeight })} />
+  
   useEffect(() => {
     // Hide drawer on route chnage after menu link click
     if (!desktopMode && prevPathname !== pathname) {
