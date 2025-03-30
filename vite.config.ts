@@ -1,22 +1,17 @@
-import react from '@vitejs/plugin-react';
-import { fileURLToPath, URL } from 'node:url';
-import tailwindcss from 'tailwindcss';
-import { defineConfig } from 'vite';
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  css: {
-    postcss: {
-      plugins: [tailwindcss()]
-    }
-  },
-  base: '/',
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
+  plugins: [tsconfigPaths({ root: __dirname }), react()],
   build: {
-    chunkSizeWarningLimit: 3000
-  }
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          antd: ["antd"],
+        },
+      },
+    },
+  },
 });
