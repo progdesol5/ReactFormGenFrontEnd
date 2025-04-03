@@ -1,11 +1,26 @@
-import { StrictMode } from "react";
-import ReactDOM from "react-dom/client";
+import '@/components/keenicons/assets/styles.css';
+import './styles/globals.css';
 
-import App from "./App";
+import axios from 'axios';
+import ReactDOM from 'react-dom/client';
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+import { App } from './App';
+import { setupAxios } from './auth';
+import { ProvidersWrapper } from './providers';
+import React from 'react';
+
+/**
+ * Inject interceptors for axios.
+ *
+ * @see https://github.com/axios/axios#interceptors
+ */
+setupAxios(axios);
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <ProvidersWrapper>
+      <App />
+    </ProvidersWrapper>
+  </React.StrictMode>
 );

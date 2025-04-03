@@ -1,76 +1,32 @@
-import { Text } from "@/components";
+import clsx from 'clsx';
+import { Children, cloneElement, isValidElement, memo, ReactNode, useState } from 'react';
+import { IAccordionItemProps } from './';
 
-import { AccordionHeaderSkeleton } from "./accordion-header-skeleton";
+interface IAccordionProps {
+  className?: string; // Optional className for custom styling
+  children: ReactNode;
+  allowMultiple?: boolean; // Allow multiple items to be open at the same time
+}
 
-type Props = React.PropsWithChildren<{
-  accordionKey: string;
-  activeKey?: string;
-  setActive: (key?: string) => void;
-  fallback: string | React.ReactNode;
-  isLoading?: boolean;
-  icon: React.ReactNode;
-  label: string;
-}>;
+const AccordionComponent = ({ className, children, allowMultiple }: IAccordionProps) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-/**
- * when activeKey is equal to accordionKey, the children will be rendered. Otherwise, the fallback will be rendered
- * when isLoading is true, the <AccordionHeaderSkeleton /> will be rendered
- * when Accordion is clicked, setActive will be called with the accordionKey
- */
-export const Accordion = ({
-  accordionKey,
-  activeKey,
-  setActive,
-  fallback,
-  icon,
-  label,
-  children,
-  isLoading,
-}: Props) => {
-  if (isLoading) {
-    return <AccordionHeaderSkeleton />;
-  }
-
-  const isActive = activeKey === accordionKey;
-
-  const toggleAccordion = () => {
-    if (isActive) {
-      setActive(undefined);
-    } else {
-      setActive(accordionKey);
-    }
+  const handleItemClick = (index: number) => {
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        padding: "12px 24px",
-        gap: "12px",
-        alignItems: "start",
-        borderBottom: "1px solid #d9d9d9",
-      }}
-    >
-      <div style={{ marginTop: "1px", flexShrink: 0 }}>{icon}</div>
-      {isActive ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            flex: 1,
-          }}
-        >
-          <Text strong onClick={toggleAccordion} style={{ cursor: "pointer" }}>
-            {label}
-          </Text>
-          {children}
-        </div>
-      ) : (
-        <div onClick={toggleAccordion} style={{ cursor: "pointer", flex: 1 }}>
-          {fallback}
-        </div>
-      )}
-    </div>
-  );
+  const modifiedChildren = Children.map(children, (child, index) => {
+    if (isValidElement<IAccordionItemProps>(child)) {
+      return cloneElement<IAccordionItemProps>(child, {
+        isOpen: allowMultiple ? child.props.isOpen : openIndex === index,
+        onClick: () => handleItemClick(index)
+      });
+    }
+    return child;
+  });
+
+  return <div className={clsx('accordion', className && className)}>{modifiedChildren}</div>;
 };
+
+const Accordion = memo(AccordionComponent);
+export { Accordion, type IAccordionProps };

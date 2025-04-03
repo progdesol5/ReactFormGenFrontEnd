@@ -7,5 +7,3 @@ export * from './SettingsProvider';
 export * from './SnackbarProvider';
 export * from './TablesProvider';
 export * from './TranslationProvider';
-export * from "./auth";
-export * from "./data";

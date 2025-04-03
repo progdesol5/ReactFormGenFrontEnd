@@ -1,5 +1,5 @@
 import { DefaultPage, Demo1DarkSidebarPage } from '@/pages/dashboards';
-import { TablePage, Tables } from '@/pages/tables';
+import { TablePage, Tables } from "@/pages/tables";
 import { ReactElement } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router';
 
@@ -16,66 +16,48 @@ import { Demo6Layout } from '@/layouts/demo6';
 import { Demo7Layout } from '@/layouts/demo7';
 import { Demo8Layout } from '@/layouts/demo8';
 import { Demo9Layout } from '@/layouts/demo9';
-import CompanyPage from '@/pages/company/CompanyPage';
 import FormGenerator from '@/pages/tables/generator/formGenerator';
-import { CompanyCreatePage, CompanyEditPage, CompanyListPage, TasksListPage } from '@/routes';
-
-import { Refine } from '@refinedev/core';
-
-import { resources } from '@/config/resources';
-import { authProvider, dataProvider, liveProvider } from '@/providers';
-
-import '@refinedev/antd/dist/reset.css';
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 const AppRoutingSetup = (): ReactElement => {
   const query = useQuery();
-  const currentDemo = query.get('demo') || 'demo1';
+  const currentDemo = query.get("demo") || "demo1";
 
   const getDemoLayout = () => {
     switch (currentDemo) {
-      case 'demo1':
+      case "demo1":
         return <Demo1Layout />;
-      case 'demo2':
+      case "demo2":
         return <Demo2Layout />;
-      case 'demo3':
+      case "demo3":
         return <Demo3Layout />;
-      case 'demo4':
+      case "demo4":
         return <Demo4Layout />;
-      case 'demo5':
+      case "demo5":
         return <Demo5Layout />;
-      case 'demo6':
+      case "demo6":
         return <Demo6Layout />;
-      case 'demo7':
+      case "demo7":
         return <Demo7Layout />;
-      case 'demo8':
+      case "demo8":
         return <Demo8Layout />;
-      case 'demo9':
+      case "demo9":
         return <Demo9Layout />;
-      case 'demo10':
+      case "demo10":
         return <Demo10Layout />;
       default:
         return <Navigate to="/error/404" />;
     }
   };
 
+
+
+
   return (
-    <Refine
-      dataProvider={dataProvider}
-      liveProvider={liveProvider}
-      authProvider={authProvider}
-      resources={resources}
-      options={{
-        syncWithLocation: true,
-        warnWhenUnsavedChanges: true,
-        liveMode: 'auto',
-        useNewQueryKeys: true
-      }}
-    >
-      <Routes>
-        <Route element={<RequireAuth />}>
-          {/* <Route element={<Demo1Layout />}>
+    <Routes>
+      <Route element={<RequireAuth />}>
+        {/* <Route element={<Demo1Layout />}>
           <Route path="/" element={<DefaultPage />} />
           <Route path="/dark-sidebar" element={<Demo1DarkSidebarPage />} />
 
@@ -200,31 +182,23 @@ const AppRoutingSetup = (): ReactElement => {
           <Route path="table" element={<TablePage />} />
           <Route path="generated-table" element={<GenerateForm />} />
         </Route> */}
-          <Route element={getDemoLayout()}>
-            <Route path="" element={<Navigate to="/auth/classic/login" />} />
+        <Route element={getDemoLayout()}>
+          <Route path="" element={<Navigate to="/auth/classic/login" />} />
 
-            <Route path="/dashboard" element={<DefaultPage />} />
-            <Route path="dark-sidebar" element={<Demo1DarkSidebarPage />} />
-            <Route path="/tables" element={<Tables />} />
-            <Route path="/table" element={<TablePage />} />
-            <Route path="/company" element={<CompanyPage />} />
-            <Route path="/companies" element={<CompanyListPage />} />
-            <Route path="/tasks" element={<TasksListPage />} />
-            {/* <Route path="/generated-table" element={<GenerateForm />} /> */}
-            <Route path="/generated-table" element={<FormGenerator />} />
-          </Route>
+          <Route path="/dashboard" element={<DefaultPage />} />
+          <Route path="dark-sidebar" element={<Demo1DarkSidebarPage />} />
+          <Route path="/tables" element={<Tables />} />
+          <Route path="/table" element={<TablePage />} />
+          {/* <Route path="/generated-table" element={<GenerateForm />} /> */}
+          <Route path="/generated-table" element={<FormGenerator />} />
         </Route>
-        {/* <Route path="/companies">
-          <Route index element={<CompanyListPage />} />
-          <Route path="new" element={<CompanyCreatePage />} />
-          <Route path="edit/:id" element={<CompanyEditPage />} />
-        </Route> */}
-        <Route path="error/*" element={<ErrorsRouting />} />
-        <Route path="auth/*" element={<AuthPage />} />
-        <Route path="*" element={<Navigate to="/error/404" />} />
-      </Routes>
-    </Refine>
+      </Route>
+      <Route path="error/*" element={<ErrorsRouting />} />
+      <Route path="auth/*" element={<AuthPage />} />
+      <Route path="*" element={<Navigate to="/error/404" />} />
+    </Routes>
   );
 };
 
 export { AppRoutingSetup };
+
