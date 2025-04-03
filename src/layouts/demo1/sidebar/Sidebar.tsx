@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// * eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
 import { useResponsive, useViewport } from '@/hooks';
 import { useDemo1Layout } from '../';
@@ -69,7 +69,6 @@ export const Sidebar = () => {
     );
   };
 
-  
   useEffect(() => {
     // Hide drawer on route chnage after menu link click
     if (!desktopMode && prevPathname !== pathname) {
@@ -77,26 +76,24 @@ export const Sidebar = () => {
     }
   }, [desktopMode, pathname, prevPathname]);
 
-  return (
-    <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
-      <SheetContent
-        className="border-0 p-0 w-[--tw-sidebar-width] scrollable-y-auto"
-        forceMount={true}
-        side="left"
-        close={false}
-      >
-        <SheetHeader className="sr-only">
-          <SheetTitle>Mobile Menu</SheetTitle>
-          <SheetDescription></SheetDescription>
-        </SheetHeader>
-        {renderContent()}
-      </SheetContent>
-    </Sheet>
-  );
-
-  /*if (desktopMode) {
+  if (desktopMode) {
     return renderContent();
   } else {
-   
-  }*/
+    return (
+      <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
+        <SheetContent
+          className="border-0 p-0 w-[--tw-sidebar-width] scrollable-y-auto"
+          forceMount={true}
+          side="left"
+          close={false}
+        >
+          <SheetHeader className="sr-only">
+            <SheetTitle>Mobile Menu</SheetTitle>
+            <SheetDescription></SheetDescription>
+          </SheetHeader>
+          {renderContent()}
+        </SheetContent>
+      </Sheet>
+    );
+  }
 };

@@ -16,6 +16,14 @@ export const MENU_SIDEBAR: TMenuConfig = [
       {
         title: 'Tables',
         path: '/tables'
+      },
+      {
+        title: 'Company',
+        path: '/companies'
+      },
+      {
+        title: 'Tasks',
+        path: '/tasks'
       }
     ]
   },
@@ -195,7 +203,6 @@ export const MENU_SIDEBAR: TMenuConfig = [
         ]
       },
       {
-
         title: 'Security',
         children: [
           {
