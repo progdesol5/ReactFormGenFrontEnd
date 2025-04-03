@@ -1,21 +1,21 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 
-import { useModalForm } from '@refinedev/antd';
-import { useNavigation } from '@refinedev/core';
+import { useModalForm } from "@refinedev/antd";
+import { useNavigation } from "@refinedev/core";
 
-import { Form, Input, Modal } from 'antd';
+import { Form, Input, Modal } from "antd";
 
-import { CREATE_TASK_MUTATION } from './queries';
+import { CREATE_TASK_MUTATION } from "./queries";
 
 export const TasksCreatePage = () => {
   const [searchParams] = useSearchParams();
   const { list } = useNavigation();
   const { formProps, modalProps, close } = useModalForm({
-    action: 'create',
+    action: "create",
     defaultVisible: true,
     meta: {
-      gqlMutation: CREATE_TASK_MUTATION
-    }
+      gqlMutation: CREATE_TASK_MUTATION,
+    },
   });
 
   return (
@@ -23,7 +23,7 @@ export const TasksCreatePage = () => {
       {...modalProps}
       onCancel={() => {
         close();
-        list('tasks', 'replace');
+        list("tasks", "replace");
       }}
       title="Add new card"
       width={512}
@@ -34,8 +34,10 @@ export const TasksCreatePage = () => {
         onFinish={(values) => {
           formProps?.onFinish?.({
             ...values,
-            stageId: searchParams.get('stageId') ? Number(searchParams.get('stageId')) : null,
-            userIds: []
+            stageId: searchParams.get("stageId")
+              ? Number(searchParams.get("stageId"))
+              : null,
+            userIds: [],
           });
         }}
       >
