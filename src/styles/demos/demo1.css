@@ -29,14 +29,12 @@
 
 /* Desktop mode */
 @media (min-width: theme('screens.lg')) {
-
-
-  /*
-      .demo1 .sidebar {
+	.demo1 .sidebar {
 		width: var(--tw-sidebar-width);
 		transition: width var(--tw-sidebar-transition-duration) var(--tw-sidebar-transition-timing);
 	}
-      .demo1 .sidebar .sidebar-header {
+
+	.demo1 .sidebar .sidebar-header {
 		height: var(--tw-header-height);
 	}
 
@@ -74,31 +72,29 @@
 
 	.demo1.sidebar-collapse .sidebar.animating {
 		pointer-events: none;
-	}*/
+	}
 
-
-
-    /*
-        .demo1.sidebar-collapse .sidebar:hover:not(.animating) {
+	.demo1.sidebar-collapse .sidebar:hover:not(.animating) {
 		width: var(--tw-sidebar-default-width);
 		transition: width var(--tw-sidebar-transition-duration) var(--tw-sidebar-transition-timing);
 	}
-        .demo1.sidebar-collapse .sidebar:not(:hover) .default-logo {
+
+	.demo1.sidebar-collapse .sidebar:not(:hover) .default-logo {
 		display: none;
 	}
 
 	.demo1.sidebar-collapse .sidebar:not(:hover) .small-logo {
 		display: flex;
-	}*/
+	}
 
-    /*.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-link .menu-title,
+	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-link .menu-title,
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-link .menu-arrow,
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-link .menu-badge,
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-label .menu-title,
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-label .menu-arrow,
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-label .menu-badge {
 		display: none;
-	}*/
+	}
 
 	.demo1.sidebar-collapse .sidebar:not(:hover) .menu > .menu-item > .menu-accordion {
 		display: none;

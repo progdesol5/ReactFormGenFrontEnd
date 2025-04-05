@@ -9,16 +9,15 @@ import {
   MegaMenuSubAuth,
   MegaMenuSubHelp
 } from '@/partials/menu/mega-menu';
-//import { useDemo1Layout } from '../Demo1LayoutProvider';
+import { useDemo1Layout } from '../Demo1LayoutProvider';
 import { MENU_MEGA } from '@/config';
 import { useLanguage } from '@/i18n';
-import { useDemo1Layout } from '../';
 
 const MegaMenuInner = () => {
   const desktopMode = useResponsive('up', 'lg');
   const { isRTL } = useLanguage();
   const [disabled, setDisabled] = useState(true); // Initially set disabled to true
-  const { layout, sidebarMouseLeave, setMegaMenuEnabled, setMobileSidebarOpen, megaMenuEnabled } = useDemo1Layout();
+  const { layout, sidebarMouseLeave, setMegaMenuEnabled } = useDemo1Layout();
 
   // Change disabled state to false after a certain time (e.g., 5 seconds)
   useEffect(() => {
@@ -36,10 +35,6 @@ const MegaMenuInner = () => {
     setMegaMenuEnabled(true);
   });
 
-  const handleSidebarOpen = () => {
-    setMobileSidebarOpen(true);
-  };
-
   const build = (items: TMenuConfig) => {
     const homeItem = items[0];
     const publicProfilesItem = items[1];
@@ -55,49 +50,116 @@ const MegaMenuInner = () => {
     return (
       <Fragment>
         <MenuItem key="home">
-          <MenuLink path="/dashboard" className={linkClass}>
+          <MenuLink path={homeItem.path} className={linkClass}>
             <MenuTitle className={titleClass}>{homeItem.title}</MenuTitle>
           </MenuLink>
         </MenuItem>
 
         <MenuItem
           key="public-profiles"
-          onClick={handleSidebarOpen}>
+          toggle={desktopMode ? 'dropdown' : 'accordion'}
+          trigger={desktopMode ? 'hover' : 'click'}
+          dropdownProps={{
+            placement: isRTL() ? 'bottom-end' : 'bottom-start'
+          }}
+        >
           <MenuLink className={linkClass}>
             <MenuTitle className={titleClass}>{publicProfilesItem.title}</MenuTitle>
+            {buildArrow()}
           </MenuLink>
+          {MegaMenuSubProfiles(items)}
         </MenuItem>
-        
+
         <MenuItem
           key="my-account"
-          onClick={handleSidebarOpen}>
+          toggle={desktopMode ? 'dropdown' : 'accordion'}
+          trigger={desktopMode ? 'hover' : 'click'}
+          dropdownProps={{
+            placement: isRTL() ? 'bottom-end' : 'bottom-start',
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: isRTL() ? [300, 0] : [-300, 0] // [skid, distance]
+                }
+              }
+            ]
+          }}
+        >
           <MenuLink className={linkClass}>
             <MenuTitle className={titleClass}>{myAccountItem.title}</MenuTitle>
+            {buildArrow()}
           </MenuLink>
+          {MegaMenuSubAccount(items)}
         </MenuItem>
 
         <MenuItem
           key="network"
-          onClick={handleSidebarOpen}>
+          toggle={desktopMode ? 'dropdown' : 'accordion'}
+          trigger={desktopMode ? 'hover' : 'click'}
+          dropdownProps={{
+            placement: isRTL() ? 'bottom-end' : 'bottom-start',
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: isRTL() ? [300, 0] : [-300, 0] // [skid, distance]
+                }
+              }
+            ]
+          }}
+        >
           <MenuLink className={linkClass}>
             <MenuTitle className={titleClass}>{networkItem.title}</MenuTitle>
+            {buildArrow()}
           </MenuLink>
+          {MegaMenuSubNetwork(items)}
         </MenuItem>
 
         <MenuItem
           key="auth"
-          onClick={handleSidebarOpen}>
+          toggle={desktopMode ? 'dropdown' : 'accordion'}
+          trigger={desktopMode ? 'hover' : 'click'}
+          dropdownProps={{
+            placement: isRTL() ? 'bottom-end' : 'bottom-start',
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: isRTL() ? [300, 0] : [-300, 0] // [skid, distance]
+                }
+              }
+            ]
+          }}
+        >
           <MenuLink className={linkClass}>
             <MenuTitle className={titleClass}>{authItem.title}</MenuTitle>
+            {buildArrow()}
           </MenuLink>
+          {MegaMenuSubAuth(items)}
         </MenuItem>
 
         <MenuItem
           key="help"
-          onClick={handleSidebarOpen}>
+          toggle={desktopMode ? 'dropdown' : 'accordion'}
+          trigger={desktopMode ? 'hover' : 'click'}
+          dropdownProps={{
+            placement: isRTL() ? 'bottom-end' : 'bottom-start',
+            modifiers: [
+              {
+                name: 'offset',
+                options: {
+                  offset: isRTL() ? [20, 0] : [-20, 0] // [skid, distance]
+                }
+              }
+            ]
+          }}
+        >
           <MenuLink className={linkClass}>
             <MenuTitle className={titleClass}>{helpItem.title}</MenuTitle>
+            {buildArrow()}
           </MenuLink>
+          {MegaMenuSubHelp(items)}
         </MenuItem>
       </Fragment>
     );
