@@ -187,6 +187,7 @@ const AppRoutingSetup = (): ReactElement => {
           <Route path="dark-sidebar" element={<Demo1DarkSidebarPage />} />
           <Route path="/tables" element={<Tables />} />
           <Route path="/companies" element={<CompanyListPage />} />
+          <Route path="/table" element={<TablePage />} />
           {/* <Route path="/generated-table" element={<GenerateForm />} /> */}
           <Route path="/generated-table" element={<FormGenerator />} />
         </Route>
